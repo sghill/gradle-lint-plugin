@@ -23,11 +23,12 @@ class Issue53Spec extends TestKitSpecification {
             
             gradleLint.rules = ['unused-dependency']
         '''
-        
-        createJavaTestFile('public class A {}')
-        
+
+        createJavaTestFile('@org.junit.Ignore public class A { org.hamcrest.CoreMatchers cm; }')
+        createJavaIntegTestFile('@org.junit.Ignore public class B { org.hamcrest.CoreMatchers cm; }')
+
         then:
-        def results = runTasksSuccessfully('compileTestJava', 'lintGradle')
+        def results = runTasksSuccessfully('compileIntegTestJava', 'lintGradle')
         println(results.output)
         results.output.readLines().count { it.contains('unused-dependency') } == 1
     }

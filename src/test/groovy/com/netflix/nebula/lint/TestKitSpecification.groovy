@@ -65,8 +65,16 @@ abstract class TestKitSpecification extends Specification {
         createJavaFile(projectDir, source, 'src/test/java')
     }
 
+    def createJavaIntegTestFile(File projectDir, String source) {
+        createJavaFile(projectDir, source, 'src/integTest/java')
+    }
+
     def createJavaTestFile(String source) {
         createJavaTestFile(projectDir, source)
+    }
+
+    def createJavaIntegTestFile(String source) {
+        createJavaIntegTestFile(projectDir, source)
     }
 
     def createJavaFile(File projectDir, String source, String sourceFolderPath) {
